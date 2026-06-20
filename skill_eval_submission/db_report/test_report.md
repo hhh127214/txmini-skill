@@ -26,6 +26,14 @@ db_report 10 条评估用例已全部真实运行。运行证据已同步到 `ev
 | Average Score | 76.1 |
 | Generated Evidence Files | 172 |
 
+## Case Grouping
+
+| Group | Cases | Purpose |
+|---|---|---|
+| Acceptance | DBR-TC001, DBR-TC002, DBR-TC003, DBR-TC005, DBR-TC006, DBR-TC008, DBR-TC009, DBR-TC010 | Core supported modes, failure paths, and anti-hallucination checks. |
+| Exploratory Boundary | DBR-TC004 | Multi-log comparison boundary; used to expose limitation disclosure risk. |
+| Exploratory Robustness | DBR-TC007 | Large pasted JSON robustness; used to expose truncation/parsing risk. |
+
 ## Case Results
 
 | Case ID | Title | Priority | Exit Code | Score | Pass | Evidence |

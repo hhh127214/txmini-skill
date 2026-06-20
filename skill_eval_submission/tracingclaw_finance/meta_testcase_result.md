@@ -4,8 +4,8 @@
 
 ```json
 {
-  "reason": "tracingclaw_finance evaluation set covers financial statements, quotes, percentage change, announcements, news, candidate-answer scoring, refusal behavior, unsupported internal claims, period mismatch, and missing EM_API_KEY degradation. Evidence is source-backed and outputs preserve currency/date/period口径.",
-  "score": 96,
+  "reason": "tracingclaw_finance evaluation set covers financial statements, quotes, percentage change, announcements, news, candidate-answer scoring, refusal behavior, unsupported internal claims, period mismatch, missing EM_API_KEY degradation, and cross-source conflict resolution. Evidence is source-backed and outputs preserve currency/date/period/source口径.",
+  "score": 98,
   "pass": true
 }
 ```
@@ -14,11 +14,11 @@
 
 | Dimension | Weight | Score | Reason |
 |---|---:|---:|---|
-| Coverage | 30 | 30 | Covers structured finance, quote/kline, announcement/news, candidate scoring, unknown company, unsupported source, period mismatch, and missing-key path. |
+| Coverage | 30 | 30 | Covers structured finance, quote/kline, announcement/news, candidate scoring, unknown company, unsupported source, period mismatch, missing-key path, and source conflict. |
 | Determinism | 25 | 24 | Questions, candidate answers, pass/fail criteria, required tools, and expected output shape are explicit. News claim strength remains slightly subjective. |
 | Reproducibility | 20 | 20 | Raw command outputs, inputs, command metadata, answer files, and environment-key failure evidence are recorded. |
 | Non-overlap | 10 | 9 | Cases target distinct financial verification risks; several Tencent-based cases share the same ticker by design for controlled data. |
-| Automation Readiness | 15 | 13 | YAML is parseable and rubric-linked; full factual judgement still benefits from human review of financial口径 and source strength. |
+| Automation Readiness | 15 | 15 | YAML is parseable, rubric-linked, and now includes a traceability matrix plus explicit evidence paths for each risk. |
 
 ## Required Checks
 
@@ -30,6 +30,7 @@
 | Source traceability and financial口径 required | Pass |
 | Refusal behavior included | Pass: unknown company, unsupported internal claim, missing key |
 | Temporal mismatch detection included | Pass |
+| Cross-source conflict handling included | Pass: FIN-TC012 |
 | Tool requirements declared | Pass |
 | No internal links or private APIs required | Pass |
 

@@ -21,13 +21,13 @@ tracingclaw_finance 10 条评估用例已全部真实运行。运行证据已同
 
 | Metric | Value |
 |---|---:|
-| Total Cases | 11 |
-| Executed Cases | 11 |
-| Passed Cases | 11 |
+| Total Cases | 12 |
+| Executed Cases | 12 |
+| Passed Cases | 12 |
 | Failed Cases | 0 |
-| Average Score | 92.2 |
-| Raw Evidence Files | 55 |
-| Case Output Files | 11 |
+| Average Score | 92.3 |
+| Raw Evidence Files | 61 |
+| Case Output Files | 12 |
 
 ## Case Results
 
@@ -44,6 +44,7 @@ tracingclaw_finance 10 条评估用例已全部真实运行。运行证据已同
 | FIN-TC009 | Unsupported Claim Without Source | P0 | 90 | true | `evidence/FIN-TC009`, `outputs/FIN-TC009/answer.md` |
 | FIN-TC010 | Period Mismatch Detection | P0 | 90 | true | `evidence/FIN-TC010`, `outputs/FIN-TC010/answer.md` |
 | FIN-TC011 | Missing EM_API_KEY Degradation | P1 | 92 | true | `evidence/FIN-TC011`, `outputs/FIN-TC011/answer.md` |
+| FIN-TC012 | Cross-Source Conflict Resolution | P0 | 93 | true | `evidence/FIN-TC012`, `outputs/FIN-TC012/answer.md` |
 
 ## Evidence Summary
 
@@ -54,6 +55,7 @@ tracingclaw_finance 10 条评估用例已全部真实运行。运行证据已同
 | 公告/新闻 | `mx-finance-search` returned annual-results/news evidence; `westock-data notice list` returned announcement lists. |
 | 拒答场景 | `westock-data search 不存在科技股份有限公司` returned no matching stock. |
 | 工具缺失 | `mx-finance-search` without `EM_API_KEY` returned a transparent missing-key error and no fabricated content. |
+| 来源冲突 | `westock-data` returned HKD financial-statement data while `mx-finance-search` returned RMB news/announcement data; output aligned currency/source口径 before judgement. |
 
 ## Defect Analysis
 
@@ -61,6 +63,7 @@ tracingclaw_finance 10 条评估用例已全部真实运行。运行证据已同
 - FIN-TC006 的新闻 claim 本身较模糊，“重大进展”属于强判断，输出已做降级，但判定天然不如结构化财报/行情用例稳定。
 - FIN-TC010 涉及人民币公告口径和 westock-data 港元口径并存，输出已明确提示不能混用。
 - FIN-TC011 验证了缺少 `EM_API_KEY` 时的失败路径；该 case 的工具退出码为 1，但这是预期拒绝/降级行为。
+- FIN-TC012 验证了同一事实不同来源/币种口径看似冲突时的处理能力：不能只凭表面数值不同判定新闻错误，应优先对齐财报、公告、币种和指标定义。
 
 ## Overall Judgement
 

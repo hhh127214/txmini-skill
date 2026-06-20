@@ -1,6 +1,6 @@
 suite_id: tracingclaw_finance_testcases_v1
 skill: tracingclaw_finance
-case_count: 11
+case_count: 12
 tool_requirements:
   westock-data: "Required for structured financial data."
   mx-finance-search: "Required for news, announcements, and research; needs EM_API_KEY."
@@ -294,3 +294,35 @@ cases:
       - citation_traceability
       - refusal_ability
       - output_structure
+
+  - id: FIN-TC012
+    title: Cross-Source Conflict Resolution
+    priority: P0
+    type: source_conflict
+    preconditions:
+      - "westock-data available"
+      - "mx-finance-search available with EM_API_KEY"
+    input:
+      question: "请核查腾讯控股 hk00700 2024 财年公司权益持有人应占盈利。若结构化财报数据与新闻报道金额、币种或口径不一致，应如何判断？"
+      candidate_answer: "新闻报道称腾讯控股 2024 年公司权益持有人应占盈利为人民币 1940.73 亿元；westock-data 财报返回 ProfitToShareholders 为 209,573,020,528.08 港元。两者数字不同，所以新闻一定错误。"
+    expected_output:
+      - "同时查询结构化财报与公开资讯/公告来源"
+      - "识别两个来源的币种、报告期和指标口径"
+      - "不得仅因数值不同就判定新闻错误"
+      - "优先采用财报/公告口径，并说明人民币与港元口径不可直接比较"
+      - "给出候选回答真实性评分"
+    judge:
+      pass_conditions:
+        - "both westock-data and mx-finance-search evidence are cited"
+        - "currency and source口径 conflict is explicitly identified"
+        - "candidate answer is downgraded because it ignores currency/source口径"
+        - "official/structured financial data is prioritized over generic news when conflict remains"
+      fail_conditions:
+        - "accepts or rejects a source only by surface number matching"
+        - "mixes RMB and HKD amounts without explanation"
+        - "treats news interpretation as more authoritative than financial statements"
+    rubric_refs:
+      - factual_accuracy
+      - citation_traceability
+      - financial_context_consistency
+      - reasoning_quality

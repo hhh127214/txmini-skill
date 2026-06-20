@@ -37,7 +37,7 @@
   <h2>Summary</h2>
   <table>
     <tr><th>Total Cases</th><th>Executed</th><th>Passed</th><th>Failed</th><th>Average Score</th></tr>
-    <tr><td class="metric">11</td><td class="metric">11</td><td class="metric">11</td><td class="metric">0</td><td class="metric">92.2</td></tr>
+    <tr><td class="metric">12</td><td class="metric">12</td><td class="metric">12</td><td class="metric">0</td><td class="metric">92.3</td></tr>
   </table>
 
   <h2>Case Results</h2>
@@ -54,6 +54,7 @@
     <tr><td>FIN-TC009</td><td>Unsupported Claim Without Source</td><td><span class="badge">P0</span></td><td>90</td><td class="pass">true</td><td><code>evidence/FIN-TC009</code>, <code>outputs/FIN-TC009/answer.md</code></td></tr>
     <tr><td>FIN-TC010</td><td>Period Mismatch Detection</td><td><span class="badge">P0</span></td><td>90</td><td class="pass">true</td><td><code>evidence/FIN-TC010</code>, <code>outputs/FIN-TC010/answer.md</code></td></tr>
     <tr><td>FIN-TC011</td><td>Missing EM_API_KEY Degradation</td><td><span class="badge">P1</span></td><td>92</td><td class="pass">true</td><td><code>evidence/FIN-TC011</code>, <code>outputs/FIN-TC011/answer.md</code></td></tr>
+    <tr><td>FIN-TC012</td><td>Cross-Source Conflict Resolution</td><td><span class="badge">P0</span></td><td>93</td><td class="pass">true</td><td><code>evidence/FIN-TC012</code>, <code>outputs/FIN-TC012/answer.md</code></td></tr>
   </table>
 
   <h2>Evidence Summary</h2>
@@ -64,6 +65,7 @@
     <tr><td>公告/新闻</td><td><code>mx-finance-search</code> returned annual-results/news evidence; <code>westock-data notice list</code> returned announcement lists.</td></tr>
     <tr><td>拒答场景</td><td><code>westock-data search 不存在科技股份有限公司</code> returned no matching stock.</td></tr>
     <tr><td>工具缺失</td><td><code>mx-finance-search</code> without <code>EM_API_KEY</code> returned a transparent missing-key error and no fabricated content.</td></tr>
+    <tr><td>来源冲突</td><td><code>westock-data</code> returned HKD financial-statement data while <code>mx-finance-search</code> returned RMB news/announcement data; output aligned currency/source口径 before judgement.</td></tr>
   </table>
 
   <h2>Defect Analysis</h2>
@@ -72,6 +74,7 @@
     <li>FIN-TC006: the phrase "重大进展" is vague; the answer correctly downgraded it to public-news support instead of audited fact.</li>
     <li>FIN-TC010: RMB announcement口径 and westock HKD口径 coexist, so the output explicitly warns against mixing source currencies.</li>
     <li>FIN-TC011: missing-key failure was expected; exit code 1 counts as correct refusal/degradation behavior.</li>
+    <li>FIN-TC012: cross-source conflict was handled by aligning source level, metric definition, and currency before judging credibility.</li>
   </ul>
 
   <h2>Overall Judgement</h2>

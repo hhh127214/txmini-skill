@@ -21,8 +21,11 @@ skill_eval_submission/
 │   ├── tracingclaw_finance_理想态规范.md
 │   ├── tracingclaw_finance_评分规则_Rubrics.yaml
 │   ├── tracingclaw_finance_测试用例集.yaml
-│   └── tracingclaw_finance_元测试设计.md
+│   ├── tracingclaw_finance_元测试设计.md
+│   └── 全链路追踪矩阵.md
 ├── README.md
+├── traceability_matrix.md
+├── final_validation_report.md
 ├── db_report/
 │   ├── skill_analysis.md
 │   ├── ideal_state.md
@@ -51,9 +54,11 @@ skill_eval_submission/
     └── evidence/
 ```
 
-The package also includes `final_validation_report.md` at the root level.
+The package also includes `traceability_matrix.md` and `final_validation_report.md` at the root level.
 
 `00_核心提交文件/` contains Chinese-named copies of the four core deliverables requested by the mentor: ideal state, rubrics, testcases, and meta-testcase design. The original per-Skill directories keep the complete execution reports, scores, outputs, screenshots, and evidence.
+
+`traceability_matrix.md` shows the design chain from Skill capability analysis to ideal-state requirements, rubrics, test cases, and execution evidence.
 
 ## External Resources
 
@@ -75,7 +80,7 @@ For `tracingclaw_finance`, execution requires the two tool Skills provided by th
 
 ## Scoring Target
 
-`db_report` has 10 executed test cases. `tracingclaw_finance` has 11 executed test cases, including one explicit missing-`EM_API_KEY` degradation case. The evaluation set is considered ready when:
+`db_report` has 10 executed test cases. `tracingclaw_finance` has 12 executed test cases, including one explicit missing-`EM_API_KEY` degradation case and one cross-source conflict case. The evaluation set is considered ready when:
 
 - all P0 cases have executable input and deterministic judge criteria;
 - execution evidence is recorded in `outputs/`, `screenshots/`, or `evidence/`;
