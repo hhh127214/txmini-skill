@@ -1,0 +1,61 @@
+{
+  "single_product": {
+    "TDSQL-B v22.7.3": {
+      "peak_summary": [
+        {
+          "scenario": "oltp_point_select",
+          "peak_qps": 19494.95,
+          "peak_tps": 19494.95,
+          "peak_threads": 32,
+          "peak_p95_ms": 1.14
+        }
+      ],
+      "scalability": {
+        "oltp_point_select": {
+          "threads": [
+            32
+          ],
+          "qps": [
+            19494.95
+          ],
+          "tps": [
+            19494.95
+          ],
+          "p95_ms": [
+            1.14
+          ],
+          "p99_ms": [
+            1.64
+          ]
+        }
+      }
+    }
+  },
+  "product_compare": {
+    "products": [
+      "TDSQL-B v22.7.3"
+    ],
+    "scenarios": [
+      "oltp_point_select"
+    ],
+    "single_product": {
+      "TDSQL-B v22.7.3": {
+        "peak_summary": [
+          {
+            "scenario": "oltp_point_select",
+            "peak_qps": 19494.95,
+            "peak_tps": 19494.95,
+            "peak_threads": 32,
+            "peak_p95_ms": 1.14
+          }
+        ]
+      }
+    },
+    "ratio_matrix": {},
+    "fairness": {
+      "passed": true,
+      "issues": []
+    }
+  },
+  "report_type": "single"
+}

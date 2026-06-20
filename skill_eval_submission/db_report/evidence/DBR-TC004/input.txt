@@ -1,0 +1,1 @@
+请对比 db_report/test-resource/mock_tdsqlb_v22_7_2.log 和 db_report/test-resource/mock_tdsqlb_v22_7_3.log 的性能差异。

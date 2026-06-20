@@ -1,0 +1,81 @@
+intent.json 已生成: C:\Users\17128\Documents\tx-skill\runs\db_report\DBR-TC004\data\intent.json
+{
+  "data_source_type": "local_file",
+  "data_source_value": "C:\\Users\\17128\\Desktop\\skill\\性能工程 Skill 评估专项考题\\db_report\\test-resource\\mock_tdsqlb_v22_7_2.log",
+  "report_type": "comparison",
+  "dimension_filters": {
+    "test_name_keywords": [],
+    "test_name_keywords_or": null,
+    "tool_name": null,
+    "tool_version_keywords": [],
+    "component_name": null,
+    "component_version": null
+  },
+  "results_key_filters": {
+    "threads": null,
+    "tables": null,
+    "table_size": null,
+    "time": null,
+    "warehouses": null
+  },
+  "task_filters": {
+    "task_id": null,
+    "plan_id": null,
+    "report_id": null
+  },
+  "iteration_config": null,
+  "custom_config": null,
+  "other_info": null
+}
+extracted_data.json 已保存: C:\Users\17128\Documents\tx-skill\runs\db_report\DBR-TC004\data\extracted_data.json（30 条记录）
+   产品: ['sysbench']
+   场景: ['oltp_point_select', 'oltp_read_only', 'oltp_read_write', 'oltp_update_index', 'oltp_write_only']
+   并发档: [32, 64, 128, 256, 512, 1000]
+
+=== 分析完成（report_type=comparison）===
+analysis_results.json 已保存: C:\Users\17128\Documents\tx-skill\runs\db_report\DBR-TC004\data\analysis_results.json
+insights.json 已保存: C:\Users\17128\Documents\tx-skill\runs\db_report\DBR-TC004\data\insights.json
+洞察数量: 7
+
+生成 16 张图表（report_type=comparison）
+   - comparison_ladder.png
+   - comparison_p95_oltp_point_select.png
+   - comparison_p95_oltp_read_only.png
+   - comparison_p95_oltp_read_write.png
+   - comparison_p95_oltp_update_index.png
+   - comparison_p95_oltp_write_only.png
+   - comparison_peak_oltp_point_select.png
+   - comparison_peak_oltp_read_only.png
+   - comparison_peak_oltp_read_write.png
+   - comparison_peak_oltp_update_index.png
+   - comparison_peak_oltp_write_only.png
+   - comparison_qps_oltp_point_select.png
+   - comparison_qps_oltp_read_only.png
+   - comparison_qps_oltp_read_write.png
+   - comparison_qps_oltp_update_index.png
+   - comparison_qps_oltp_write_only.png
+Markdown: C:\Users\17128\Documents\tx-skill\runs\db_report\DBR-TC004\report.md
+Word:     C:\Users\17128\Documents\tx-skill\runs\db_report\DBR-TC004\report.docx
+HTML:     C:\Users\17128\Documents\tx-skill\runs\db_report\DBR-TC004\report.html
+
+> C:\Users\17128\Documents\tx-skill\.venv\Scripts\python.exe C:\Users\17128\Desktop\skill\性能工程 Skill 评估专项考题\db_report\db_report_skill\scripts\parse_intent.py --text 请对比 db_report/test-resource/mock_tdsqlb_v22_7_2.log 和 db_report/test-resource/mock_tdsqlb_v22_7_3.log 的性能差异。 --out C:\Users\17128\Documents\tx-skill\runs\db_report\DBR-TC004\data\intent.json
+
+意图解析结果：
+  data_source_type: local_file
+  report_type:      comparison
+
+> C:\Users\17128\Documents\tx-skill\.venv\Scripts\python.exe C:\Users\17128\Desktop\skill\性能工程 Skill 评估专项考题\db_report\db_report_skill\scripts\data_source_adapter.py --intent C:\Users\17128\Documents\tx-skill\runs\db_report\DBR-TC004\data\intent.json --out C:\Users\17128\Documents\tx-skill\runs\db_report\DBR-TC004\data\extracted_data.json
+
+> C:\Users\17128\Documents\tx-skill\.venv\Scripts\python.exe C:\Users\17128\Desktop\skill\性能工程 Skill 评估专项考题\db_report\db_report_skill\scripts\analyze.py --extracted C:\Users\17128\Documents\tx-skill\runs\db_report\DBR-TC004\data\extracted_data.json --intent C:\Users\17128\Documents\tx-skill\runs\db_report\DBR-TC004\data\intent.json --out-analysis C:\Users\17128\Documents\tx-skill\runs\db_report\DBR-TC004\data\analysis_results.json --out-insights C:\Users\17128\Documents\tx-skill\runs\db_report\DBR-TC004\data\insights.json
+
+> C:\Users\17128\Documents\tx-skill\.venv\Scripts\python.exe C:\Users\17128\Desktop\skill\性能工程 Skill 评估专项考题\db_report\db_report_skill\scripts\generate_charts.py --extracted C:\Users\17128\Documents\tx-skill\runs\db_report\DBR-TC004\data\extracted_data.json --analysis C:\Users\17128\Documents\tx-skill\runs\db_report\DBR-TC004\data\analysis_results.json --charts-dir C:\Users\17128\Documents\tx-skill\runs\db_report\DBR-TC004\charts --report-type comparison
+
+> C:\Users\17128\Documents\tx-skill\.venv\Scripts\python.exe C:\Users\17128\Desktop\skill\性能工程 Skill 评估专项考题\db_report\db_report_skill\scripts\render_all.py --extracted C:\Users\17128\Documents\tx-skill\runs\db_report\DBR-TC004\data\extracted_data.json --analysis C:\Users\17128\Documents\tx-skill\runs\db_report\DBR-TC004\data\analysis_results.json --insights C:\Users\17128\Documents\tx-skill\runs\db_report\DBR-TC004\data\insights.json --intent C:\Users\17128\Documents\tx-skill\runs\db_report\DBR-TC004\data\intent.json --out-dir C:\Users\17128\Documents\tx-skill\runs\db_report\DBR-TC004 --charts-dir-rel charts
+
+流水线完成
+   报告位于: C:\Users\17128\Documents\tx-skill\runs\db_report\DBR-TC004/
+     - report.md
+     - report.docx
+     - report.html
+     - charts/  (16 张图)
+     - data/    (4 份中间产物)

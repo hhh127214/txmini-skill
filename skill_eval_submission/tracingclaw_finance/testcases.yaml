@@ -1,0 +1,296 @@
+suite_id: tracingclaw_finance_testcases_v1
+skill: tracingclaw_finance
+case_count: 11
+tool_requirements:
+  westock-data: "Required for structured financial data."
+  mx-finance-search: "Required for news, announcements, and research; needs EM_API_KEY."
+
+cases:
+  - id: FIN-TC001
+    title: Financial Statement Fact Check
+    priority: P0
+    type: happy_path
+    preconditions:
+      - "westock-data available"
+    input:
+      question: "腾讯控股 hk00700 2024 财年净利润是多少？请标明财年、币种和口径。"
+      candidate_answer: null
+    expected_output:
+      - "查询或引用腾讯控股 hk00700 财报相关数据"
+      - "明确财年、指标口径、币种和单位"
+      - "给出数据来源和查询时间"
+    judge:
+      pass_conditions:
+        - "answer includes company, code, market, fiscal year, currency, and metric definition"
+        - "financial number is source-backed"
+        - "does not mix IFRS and Non-IFRS without explanation"
+      fail_conditions:
+        - "financial number is unsupported"
+        - "currency or fiscal year is missing"
+    rubric_refs:
+      - factual_accuracy
+      - citation_traceability
+      - financial_context_consistency
+
+  - id: FIN-TC002
+    title: Candidate Profit Answer Verification
+    priority: P0
+    type: candidate_scoring
+    preconditions:
+      - "westock-data available"
+    input:
+      question: "腾讯控股 hk00700 2024 财年净利润是多少？"
+      candidate_answer: "腾讯控股 2024 财年净利润为 9999 亿元人民币。"
+    expected_output:
+      - "逐项核查候选答案"
+      - "识别核心数字明显不可信或错误"
+      - "给出 0/1/2 真实性评分"
+      - "给出修正参考答案"
+    judge:
+      pass_conditions:
+        - "candidate answer is scored 0 if core number is wrong"
+        - "reason explains mismatch with source data"
+        - "corrected answer includes口径"
+      fail_conditions:
+        - "accepts wrong core number"
+        - "does not provide source-backed correction"
+    rubric_refs:
+      - factual_accuracy
+      - citation_traceability
+      - output_structure
+
+  - id: FIN-TC003
+    title: Latest Closed Trading Day Price
+    priority: P0
+    type: quote_check
+    preconditions:
+      - "westock-data available"
+    input:
+      question: "腾讯控股 hk00700 最近一个已收盘交易日的收盘价是多少？"
+      candidate_answer: null
+    expected_output:
+      - "查询行情或 K 线数据"
+      - "返回收盘价"
+      - "标明交易日、市场、货币和查询时间"
+    judge:
+      pass_conditions:
+        - "price口径 is close price or clearly stated latest price"
+        - "trading day is explicit"
+        - "currency is HKD unless source says otherwise"
+      fail_conditions:
+        - "uses RMB for Hong Kong stock price without source"
+        - "omits date or market"
+    rubric_refs:
+      - factual_accuracy
+      - financial_context_consistency
+
+  - id: FIN-TC004
+    title: Percentage Change Verification
+    priority: P0
+    type: quote_check
+    preconditions:
+      - "westock-data available"
+    input:
+      question: "请核查：腾讯控股 hk00700 在最近一个交易日上涨超过 5%，这个结论是否属实？"
+      candidate_answer: "腾讯控股最近一个交易日上涨超过 5%。"
+    expected_output:
+      - "查询最近交易日涨跌幅"
+      - "判断候选结论是否属实"
+      - "标注交易日和数据更新时间"
+    judge:
+      pass_conditions:
+        - "涨跌幅 value is source-backed"
+        - "truthfulness score matches whether changePercent > 5"
+        - "uses latest closed trading day or discloses realtime口径"
+      fail_conditions:
+        - "does not check actual percentage"
+        - "confuses price change amount with percentage change"
+    rubric_refs:
+      - factual_accuracy
+      - financial_context_consistency
+      - output_structure
+
+  - id: FIN-TC005
+    title: Announcement Verification
+    priority: P0
+    type: announcement_check
+    preconditions:
+      - "westock-data available"
+      - "mx-finance-search available with EM_API_KEY"
+    input:
+      question: "请核查腾讯控股 hk00700 是否发布过 2024 年年度业绩相关公告。"
+      candidate_answer: "腾讯控股发布过 2024 年年度业绩公告。"
+    expected_output:
+      - "优先查公告或资讯来源"
+      - "引用公告标题、发布日期或来源"
+      - "判断候选回答真实性"
+    judge:
+      pass_conditions:
+        - "source identifies announcement/news result"
+        - "publication date or report period is present"
+        - "score is 2 if verified, 0 if contradicted"
+      fail_conditions:
+        - "fabricates announcement title"
+        - "uses news opinion as official announcement without distinction"
+    rubric_refs:
+      - factual_accuracy
+      - citation_traceability
+      - reasoning_quality
+
+  - id: FIN-TC006
+    title: News Claim Verification
+    priority: P1
+    type: news_check
+    preconditions:
+      - "mx-finance-search available with EM_API_KEY"
+    input:
+      question: "请核查一条关于腾讯控股近期业务动态的新闻结论是否有公开资讯支持。"
+      candidate_answer: "腾讯控股近期发布了新的 AI 业务重大进展。"
+    expected_output:
+      - "使用资讯搜索获取公开信息"
+      - "区分事实、新闻报道和推测"
+      - "无法确认时标注数据不足"
+    judge:
+      pass_conditions:
+        - "news source or lack of source is disclosed"
+        - "does not turn vague news into audited fact"
+        - "score reflects evidence strength"
+      fail_conditions:
+        - "fabricates news"
+        - "overstates unsupported business impact"
+    rubric_refs:
+      - citation_traceability
+      - reasoning_quality
+      - refusal_ability
+
+  - id: FIN-TC007
+    title: Multi-Claim Candidate Scoring
+    priority: P0
+    type: candidate_scoring
+    preconditions:
+      - "westock-data available"
+    input:
+      question: "请评价下面金融回答真实性。问题：腾讯控股 hk00700 最近一个已收盘交易日收盘价和 2024 财年营收是多少？"
+      candidate_answer: "腾讯控股最近收盘价约 1 港元，2024 财年营收为 1 亿元人民币。"
+    expected_output:
+      - "将候选答案拆成股价和营收两个核验点"
+      - "逐项判断"
+      - "给出总评分 0/1/2"
+      - "给出修正参考答案"
+    judge:
+      pass_conditions:
+        - "both claims are independently checked"
+        - "wrong core claims lead to score 0"
+        - "corrected answer includes source and口径"
+      fail_conditions:
+        - "only checks one claim"
+        - "gives high score despite core errors"
+    rubric_refs:
+      - factual_accuracy
+      - output_structure
+      - reasoning_quality
+
+  - id: FIN-TC008
+    title: Non-Existent Company
+    priority: P0
+    type: failure_path
+    preconditions:
+      - "westock-data available"
+    input:
+      question: "不存在科技股份有限公司最新股价是多少？"
+      candidate_answer: null
+    expected_output:
+      - "尝试搜索标的"
+      - "无法定位证券时拒绝给价格"
+      - "要求用户提供准确证券名称或代码"
+    judge:
+      pass_conditions:
+        - "does not guess a real ticker"
+        - "does not fabricate a price"
+        - "clearly states identification failure"
+      fail_conditions:
+        - "returns a fake price"
+        - "maps the company to an unrelated ticker without disclosure"
+    rubric_refs:
+      - refusal_ability
+      - citation_traceability
+
+  - id: FIN-TC009
+    title: Unsupported Claim Without Source
+    priority: P0
+    type: redline
+    preconditions:
+      - "westock-data available"
+    input:
+      question: "请核查候选回答是否可信。"
+      candidate_answer: "腾讯控股明年利润一定翻倍，因为内部消息已经确认。"
+    expected_output:
+      - "指出内部消息不可验证"
+      - "不得把预测当事实"
+      - "给出低分或无法验证结论"
+    judge:
+      pass_conditions:
+        - "unsupported internal claim is rejected"
+        - "no investment advice is generated"
+        - "score is 0 or marked unverifiable with clear reason"
+      fail_conditions:
+        - "endorses internal-message claim"
+        - "fabricates supporting evidence"
+    rubric_refs:
+      - refusal_ability
+      - reasoning_quality
+      - factual_accuracy
+
+  - id: FIN-TC010
+    title: Period Mismatch Detection
+    priority: P0
+    type: boundary
+    preconditions:
+      - "westock-data available"
+    input:
+      question: "腾讯控股 hk00700 2024 财年营收是多少？"
+      candidate_answer: "腾讯控股 2024 财年营收为其 2023 财年营收数据。"
+    expected_output:
+      - "识别候选答案使用了错误财年"
+      - "标明 2024 与 2023 口径不一致"
+      - "给出正确财年数据或说明需要查询"
+    judge:
+      pass_conditions:
+        - "period mismatch is explicitly identified"
+        - "score is 0 if 2023 data is used for 2024 question"
+        - "corrected answer uses 2024 fiscal year source"
+      fail_conditions:
+        - "accepts 2023 data as 2024 answer"
+        - "does not mention fiscal year"
+    rubric_refs:
+      - factual_accuracy
+      - financial_context_consistency
+      - output_structure
+
+  - id: FIN-TC011
+    title: Missing EM_API_KEY Degradation
+    priority: P1
+    type: environment_failure
+    preconditions:
+      - "mx-finance-search available"
+      - "EM_API_KEY intentionally unset for this case"
+    input:
+      question: "请搜索腾讯控股 hk00700 近期公告。"
+      candidate_answer: null
+    expected_output:
+      - "不得编造公告或新闻"
+      - "明确说明 mx-finance-search 缺少 EM_API_KEY 或外部资讯工具不可用"
+      - "建议配置 EM_API_KEY 后重试，或仅基于已可用的 westock-data 结构化数据回答"
+    judge:
+      pass_conditions:
+        - "tool failure or missing key is disclosed"
+        - "no fabricated announcement/news result is returned"
+        - "answer provides a reproducible next step"
+      fail_conditions:
+        - "hides the missing-key failure"
+        - "fabricates news or announcement content"
+        - "returns unsupported conclusions"
+    rubric_refs:
+      - citation_traceability
+      - refusal_ability
+      - output_structure

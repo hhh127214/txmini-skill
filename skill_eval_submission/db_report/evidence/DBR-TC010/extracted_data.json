@@ -1,0 +1,385 @@
+{
+  "meta": {
+    "products": [
+      "sysbench"
+    ],
+    "scenarios": [
+      "oltp_point_select",
+      "oltp_read_only",
+      "oltp_read_write",
+      "oltp_update_index",
+      "oltp_write_only"
+    ],
+    "concurrencies": [
+      32,
+      64,
+      128,
+      256,
+      512,
+      1000
+    ],
+    "test_env": {},
+    "log_meta": [
+      {
+        "product": "sysbench",
+        "log_file": "mock_tdsqlb_v22_7_3.log",
+        "engine": "sysbench",
+        "start_time": "",
+        "db_endpoint": "TDSQL-B-v22.7.3",
+        "data_config": "16 tables × 1000000 rows",
+        "duration_sec": 2026
+      }
+    ],
+    "source_info": {
+      "type": "local_file",
+      "value": "C:\\Users\\17128\\Desktop\\skill\\性能工程 Skill 评估专项考题\\db_report\\test-resource\\mock_tdsqlb_v22_7_3.log",
+      "rows_fetched": 30
+    },
+    "concurrencies_by_product_scenario": {
+      "sysbench": {
+        "oltp_point_select": [
+          32,
+          64,
+          128,
+          256,
+          512,
+          1000
+        ],
+        "oltp_read_only": [
+          32,
+          64,
+          128,
+          256,
+          512,
+          1000
+        ],
+        "oltp_read_write": [
+          32,
+          64,
+          128,
+          256,
+          512,
+          1000
+        ],
+        "oltp_write_only": [
+          32,
+          64,
+          128,
+          256,
+          512,
+          1000
+        ],
+        "oltp_update_index": [
+          32,
+          64,
+          128,
+          256,
+          512,
+          1000
+        ]
+      }
+    }
+  },
+  "records": [
+    {
+      "product": "sysbench",
+      "scenario": "oltp_point_select",
+      "threads": 32,
+      "tps": 19850.2,
+      "qps": 19850.2,
+      "p95_ms": 1.95,
+      "p99_ms": 3.1,
+      "source_log": "mock_tdsqlb_v22_7_3.log"
+    },
+    {
+      "product": "sysbench",
+      "scenario": "oltp_point_select",
+      "threads": 64,
+      "tps": 34620.4,
+      "qps": 34620.4,
+      "p95_ms": 2.2,
+      "p99_ms": 3.6,
+      "source_log": "mock_tdsqlb_v22_7_3.log"
+    },
+    {
+      "product": "sysbench",
+      "scenario": "oltp_point_select",
+      "threads": 128,
+      "tps": 63480.1,
+      "qps": 63480.1,
+      "p95_ms": 2.55,
+      "p99_ms": 4.2,
+      "source_log": "mock_tdsqlb_v22_7_3.log"
+    },
+    {
+      "product": "sysbench",
+      "scenario": "oltp_point_select",
+      "threads": 256,
+      "tps": 78920.5,
+      "qps": 78920.5,
+      "p95_ms": 4.2,
+      "p99_ms": 7.3,
+      "source_log": "mock_tdsqlb_v22_7_3.log"
+    },
+    {
+      "product": "sysbench",
+      "scenario": "oltp_point_select",
+      "threads": 512,
+      "tps": 84850.3,
+      "qps": 84850.3,
+      "p95_ms": 8.1,
+      "p99_ms": 14.2,
+      "source_log": "mock_tdsqlb_v22_7_3.log"
+    },
+    {
+      "product": "sysbench",
+      "scenario": "oltp_point_select",
+      "threads": 1000,
+      "tps": 82120.8,
+      "qps": 82120.8,
+      "p95_ms": 16.4,
+      "p99_ms": 29.5,
+      "source_log": "mock_tdsqlb_v22_7_3.log"
+    },
+    {
+      "product": "sysbench",
+      "scenario": "oltp_read_only",
+      "threads": 32,
+      "tps": 895.4,
+      "qps": 12535.6,
+      "p95_ms": 39.2,
+      "p99_ms": 54.8,
+      "source_log": "mock_tdsqlb_v22_7_3.log"
+    },
+    {
+      "product": "sysbench",
+      "scenario": "oltp_read_only",
+      "threads": 64,
+      "tps": 1620.8,
+      "qps": 22691.2,
+      "p95_ms": 43.1,
+      "p99_ms": 60.2,
+      "source_log": "mock_tdsqlb_v22_7_3.log"
+    },
+    {
+      "product": "sysbench",
+      "scenario": "oltp_read_only",
+      "threads": 128,
+      "tps": 2680.5,
+      "qps": 37527.0,
+      "p95_ms": 53.4,
+      "p99_ms": 76.8,
+      "source_log": "mock_tdsqlb_v22_7_3.log"
+    },
+    {
+      "product": "sysbench",
+      "scenario": "oltp_read_only",
+      "threads": 256,
+      "tps": 3450.2,
+      "qps": 48302.8,
+      "p95_ms": 78.5,
+      "p99_ms": 112.4,
+      "source_log": "mock_tdsqlb_v22_7_3.log"
+    },
+    {
+      "product": "sysbench",
+      "scenario": "oltp_read_only",
+      "threads": 512,
+      "tps": 3720.4,
+      "qps": 52085.6,
+      "p95_ms": 145.2,
+      "p99_ms": 208.3,
+      "source_log": "mock_tdsqlb_v22_7_3.log"
+    },
+    {
+      "product": "sysbench",
+      "scenario": "oltp_read_only",
+      "threads": 1000,
+      "tps": 3580.8,
+      "qps": 50131.2,
+      "p95_ms": 294.8,
+      "p99_ms": 425.6,
+      "source_log": "mock_tdsqlb_v22_7_3.log"
+    },
+    {
+      "product": "sysbench",
+      "scenario": "oltp_read_write",
+      "threads": 32,
+      "tps": 510.8,
+      "qps": 10216.0,
+      "p95_ms": 74.2,
+      "p99_ms": 102.5,
+      "source_log": "mock_tdsqlb_v22_7_3.log"
+    },
+    {
+      "product": "sysbench",
+      "scenario": "oltp_read_write",
+      "threads": 64,
+      "tps": 920.4,
+      "qps": 18408.0,
+      "p95_ms": 82.3,
+      "p99_ms": 118.4,
+      "source_log": "mock_tdsqlb_v22_7_3.log"
+    },
+    {
+      "product": "sysbench",
+      "scenario": "oltp_read_write",
+      "threads": 128,
+      "tps": 1295.5,
+      "qps": 25910.0,
+      "p95_ms": 115.8,
+      "p99_ms": 168.2,
+      "source_log": "mock_tdsqlb_v22_7_3.log"
+    },
+    {
+      "product": "sysbench",
+      "scenario": "oltp_read_write",
+      "threads": 256,
+      "tps": 1820.4,
+      "qps": 36408.0,
+      "p95_ms": 158.2,
+      "p99_ms": 232.8,
+      "source_log": "mock_tdsqlb_v22_7_3.log"
+    },
+    {
+      "product": "sysbench",
+      "scenario": "oltp_read_write",
+      "threads": 512,
+      "tps": 1980.1,
+      "qps": 39602.0,
+      "p95_ms": 278.4,
+      "p99_ms": 412.3,
+      "source_log": "mock_tdsqlb_v22_7_3.log"
+    },
+    {
+      "product": "sysbench",
+      "scenario": "oltp_read_write",
+      "threads": 1000,
+      "tps": 1850.3,
+      "qps": 37006.0,
+      "p95_ms": 560.2,
+      "p99_ms": 820.5,
+      "source_log": "mock_tdsqlb_v22_7_3.log"
+    },
+    {
+      "product": "sysbench",
+      "scenario": "oltp_write_only",
+      "threads": 32,
+      "tps": 5120.4,
+      "qps": 15361.2,
+      "p95_ms": 8.1,
+      "p99_ms": 13.5,
+      "source_log": "mock_tdsqlb_v22_7_3.log"
+    },
+    {
+      "product": "sysbench",
+      "scenario": "oltp_write_only",
+      "threads": 64,
+      "tps": 9240.8,
+      "qps": 27722.4,
+      "p95_ms": 9.4,
+      "p99_ms": 15.8,
+      "source_log": "mock_tdsqlb_v22_7_3.log"
+    },
+    {
+      "product": "sysbench",
+      "scenario": "oltp_write_only",
+      "threads": 128,
+      "tps": 15840.2,
+      "qps": 47520.6,
+      "p95_ms": 11.8,
+      "p99_ms": 20.2,
+      "source_log": "mock_tdsqlb_v22_7_3.log"
+    },
+    {
+      "product": "sysbench",
+      "scenario": "oltp_write_only",
+      "threads": 256,
+      "tps": 20240.5,
+      "qps": 60721.5,
+      "p95_ms": 17.2,
+      "p99_ms": 30.8,
+      "source_log": "mock_tdsqlb_v22_7_3.log"
+    },
+    {
+      "product": "sysbench",
+      "scenario": "oltp_write_only",
+      "threads": 512,
+      "tps": 21580.3,
+      "qps": 64740.9,
+      "p95_ms": 30.8,
+      "p99_ms": 55.4,
+      "source_log": "mock_tdsqlb_v22_7_3.log"
+    },
+    {
+      "product": "sysbench",
+      "scenario": "oltp_write_only",
+      "threads": 1000,
+      "tps": 20980.4,
+      "qps": 62941.2,
+      "p95_ms": 64.5,
+      "p99_ms": 118.2,
+      "source_log": "mock_tdsqlb_v22_7_3.log"
+    },
+    {
+      "product": "sysbench",
+      "scenario": "oltp_update_index",
+      "threads": 32,
+      "tps": 3320.8,
+      "qps": 3320.8,
+      "p95_ms": 12.2,
+      "p99_ms": 19.5,
+      "source_log": "mock_tdsqlb_v22_7_3.log"
+    },
+    {
+      "product": "sysbench",
+      "scenario": "oltp_update_index",
+      "threads": 64,
+      "tps": 6020.4,
+      "qps": 6020.4,
+      "p95_ms": 13.5,
+      "p99_ms": 22.1,
+      "source_log": "mock_tdsqlb_v22_7_3.log"
+    },
+    {
+      "product": "sysbench",
+      "scenario": "oltp_update_index",
+      "threads": 128,
+      "tps": 10520.8,
+      "qps": 10520.8,
+      "p95_ms": 16.4,
+      "p99_ms": 28.2,
+      "source_log": "mock_tdsqlb_v22_7_3.log"
+    },
+    {
+      "product": "sysbench",
+      "scenario": "oltp_update_index",
+      "threads": 256,
+      "tps": 13380.2,
+      "qps": 13380.2,
+      "p95_ms": 23.1,
+      "p99_ms": 40.2,
+      "source_log": "mock_tdsqlb_v22_7_3.log"
+    },
+    {
+      "product": "sysbench",
+      "scenario": "oltp_update_index",
+      "threads": 512,
+      "tps": 14250.5,
+      "qps": 14250.5,
+      "p95_ms": 40.5,
+      "p99_ms": 68.4,
+      "source_log": "mock_tdsqlb_v22_7_3.log"
+    },
+    {
+      "product": "sysbench",
+      "scenario": "oltp_update_index",
+      "threads": 1000,
+      "tps": 13780.8,
+      "qps": 13780.8,
+      "p95_ms": 83.2,
+      "p99_ms": 144.8,
+      "source_log": "mock_tdsqlb_v22_7_3.log"
+    }
+  ]
+}

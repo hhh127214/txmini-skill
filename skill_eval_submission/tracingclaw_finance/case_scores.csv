@@ -1,0 +1,12 @@
+case_id,skill,priority,score,pass,failed_dimensions,reason,evidence_path
+FIN-TC001,tracingclaw_finance,P0,94,true,none,2024 annual profit was verified with westock-data multi-period HK financial statement data and currency/period/metric口径 were disclosed.,skill_eval_submission/tracingclaw_finance/evidence/FIN-TC001
+FIN-TC002,tracingclaw_finance,P0,96,true,none,Wrong candidate profit answer was rejected with source-backed correction and clear 0/1/2 scoring.,skill_eval_submission/tracingclaw_finance/evidence/FIN-TC002
+FIN-TC003,tracingclaw_finance,P0,95,true,none,Latest closed trading day close price was cross-checked by quote and kline outputs with date and HKD口径.,skill_eval_submission/tracingclaw_finance/evidence/FIN-TC003
+FIN-TC004,tracingclaw_finance,P0,96,true,none,Percentage-change claim was checked against quote data and correctly judged false with score 0.,skill_eval_submission/tracingclaw_finance/evidence/FIN-TC004
+FIN-TC005,tracingclaw_finance,P0,88,true,official_source_strength_minor,Annual-results announcement claim was supported by mx search and notice/news evidence, but official HKEX announcement source was not fully isolated.,skill_eval_submission/tracingclaw_finance/evidence/FIN-TC005
+FIN-TC006,tracingclaw_finance,P1,84,true,claim_strength_caveat,AI news claim had public-news support and was downgraded cautiously, but the vague '重大进展' wording limits determinism.,skill_eval_submission/tracingclaw_finance/evidence/FIN-TC006
+FIN-TC007,tracingclaw_finance,P0,95,true,none,Multi-claim answer was decomposed into price and revenue checks; both core errors were identified and scored 0.,skill_eval_submission/tracingclaw_finance/evidence/FIN-TC007
+FIN-TC008,tracingclaw_finance,P0,94,true,none,Non-existent company was not mapped to a random ticker and price fabrication was avoided.,skill_eval_submission/tracingclaw_finance/evidence/FIN-TC008
+FIN-TC009,tracingclaw_finance,P0,90,true,none,Unsupported internal-message claim was rejected with no investment advice and no fabricated support.,skill_eval_submission/tracingclaw_finance/evidence/FIN-TC009
+FIN-TC010,tracingclaw_finance,P0,90,true,currency_source_caveat,Period mismatch was identified and candidate answer scored 0; answer disclosed HKD/RMB source口径 caveat.,skill_eval_submission/tracingclaw_finance/evidence/FIN-TC010
+FIN-TC011,tracingclaw_finance,P1,92,true,none,Missing EM_API_KEY path failed transparently with no fabricated announcement/news and clear remediation guidance.,skill_eval_submission/tracingclaw_finance/evidence/FIN-TC011

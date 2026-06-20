@@ -1,0 +1,33 @@
+{
+  "data_source_type": "local_file",
+  "data_source_value": "C:\\Users\\17128\\Desktop\\skill\\性能工程 Skill 评估专项考题\\db_report\\test-resource\\mock_records_aggregation.json",
+  "report_type": "custom",
+  "dimension_filters": {
+    "test_name_keywords": [],
+    "test_name_keywords_or": null,
+    "tool_name": null,
+    "tool_version_keywords": [],
+    "component_name": null,
+    "component_version": null
+  },
+  "results_key_filters": {
+    "threads": null,
+    "tables": null,
+    "table_size": null,
+    "time": null,
+    "warehouses": null
+  },
+  "task_filters": {
+    "task_id": null,
+    "plan_id": null,
+    "report_id": null
+  },
+  "iteration_config": null,
+  "custom_config": {
+    "focus_dimension": "高并发",
+    "extra_questions": [
+      "请基于 db_report/test-resource/mock_records_aggregation.json 生成专项/深度分析报告，重点分析高并发下 P95 稳定性。"
+    ]
+  },
+  "other_info": null
+}

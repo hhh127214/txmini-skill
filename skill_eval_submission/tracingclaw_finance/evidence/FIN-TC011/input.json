@@ -1,0 +1,6 @@
+﻿{
+  "case_id": "FIN-TC011",
+  "question": "请搜索腾讯控股 hk00700 近期公告。",
+  "candidate_answer": null,
+  "environment": "EM_API_KEY intentionally unset"
+}

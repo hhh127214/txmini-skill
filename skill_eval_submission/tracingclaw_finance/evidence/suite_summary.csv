@@ -1,0 +1,12 @@
+case_id,command_count,exit_codes,all_commands_success
+FIN-TC001,1,0,true
+FIN-TC002,1,0,true
+FIN-TC003,2,0,0,true
+FIN-TC004,2,0,0,true
+FIN-TC005,2,0,0,true
+FIN-TC006,1,0,true
+FIN-TC007,2,0,0,true
+FIN-TC008,1,0,true
+FIN-TC009,1,0,true
+FIN-TC010,1,0,true
+FIN-TC011,1,1,false

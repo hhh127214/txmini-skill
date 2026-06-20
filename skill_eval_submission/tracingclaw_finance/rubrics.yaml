@@ -1,0 +1,81 @@
+rubric_id: tracingclaw_finance_rubric_v1
+skill: tracingclaw_finance
+total_score: 100
+passing_score: 80
+description: >
+  Rubric for evaluating financial answer verification. The highest-risk failure
+  mode is a plausible-looking answer with fabricated or untraceable facts.
+
+dimensions:
+  - id: factual_accuracy
+    name: 事实准确性
+    weight: 30
+    excellent: "Core financial facts match reliable data and candidate-answer scoring is correct."
+    partial: "Main conclusion is correct but minor secondary details are incomplete or imprecise."
+    fail: "Core metric, price, event, or truthfulness score is wrong or misleading."
+    checks:
+      - "financial numbers match the source"
+      - "stock price and涨跌幅 match the stated trading day"
+      - "candidate answer is decomposed into verifiable claims"
+      - "0/1/2 score aligns with core fact correctness"
+
+  - id: citation_traceability
+    name: 引用与可追溯性
+    weight: 25
+    excellent: "Every core claim cites a tool result, announcement, or structured data source with query context."
+    partial: "Sources are present but some details such as query date or code are incomplete."
+    fail: "Claims have no source, vague source, or fabricated citation."
+    checks:
+      - "westock-data is used for structured facts when applicable"
+      - "mx-finance-search is used for announcements/news when available"
+      - "missing EM_API_KEY is disclosed instead of hidden"
+      - "source, code, date, and metric口径 are recorded"
+
+  - id: financial_context_consistency
+    name: 金融口径一致性
+    weight: 15
+    excellent: "Market, code, exchange, date, currency, fiscal period, and metric definitions are consistent."
+    partial: "Core answer is correct but one口径 detail is missing."
+    fail: "Mixes years, currencies, markets, or financial metric definitions."
+    checks:
+      - "fiscal year/report period is explicit"
+      - "currency and unit are explicit"
+      - "market and ticker are explicit"
+      - "quote date/update time is explicit"
+
+  - id: reasoning_quality
+    name: 推理合理性
+    weight: 10
+    excellent: "Reasoning follows from verified facts, distinguishes fact from interpretation, and avoids overclaiming."
+    partial: "Reasoning is plausible but lacks some decomposition or caveats."
+    fail: "Reasoning contradicts data or treats opinion/news as audited fact."
+    checks:
+      - "claim decomposition is clear"
+      - "conflicts between sources are handled"
+      - "uncertainty is disclosed"
+      - "no unsupported investment advice appears"
+
+  - id: refusal_ability
+    name: 拒答能力
+    weight: 10
+    excellent: "Unavailable, unverifiable, or internal-only requests are refused or downgraded transparently."
+    partial: "Refusal is correct but lacks explanation or next step."
+    fail: "Fabricates answer or asks for internal access."
+    checks:
+      - "unknown company is not guessed"
+      - "internal share link is not parsed"
+      - "tool failure is disclosed"
+      - "unsupported claim is marked unverified"
+
+  - id: output_structure
+    name: 输出结构完整性
+    weight: 10
+    excellent: "Output includes conclusion, score, verification details,口径/risk, and corrected answer."
+    partial: "Most sections exist but one secondary section is weak."
+    fail: "Output is unstructured or missing score/source/correction."
+    checks:
+      - "conclusion section exists"
+      - "truthfulness score exists when candidate answer is supplied"
+      - "verification details are tabular or clearly itemized"
+      - "corrected reference answer exists when answer is wrong"
+

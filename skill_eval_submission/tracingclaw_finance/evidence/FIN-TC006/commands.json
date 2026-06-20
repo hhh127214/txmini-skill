@@ -1,0 +1,14 @@
+[
+  {
+    "name": "mx_news",
+    "argv": [
+      "<python>",
+      "C:\\Users\\17128\\Desktop\\skill\\性能工程 Skill 评估专项考题\\tracingclaw_finance\\mx-finance-search\\scripts\\get_data.py",
+      "腾讯控股 近期 AI 业务 重大进展 新闻",
+      "--no-save"
+    ],
+    "exit_code": 0,
+    "stdout_file": "mx_news.stdout.txt",
+    "stderr_file": "mx_news.stderr.txt"
+  }
+]

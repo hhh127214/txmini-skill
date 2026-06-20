@@ -1,0 +1,30 @@
+[
+  {
+    "name": "westock_quote",
+    "argv": [
+      "node",
+      "C:\\Users\\17128\\Desktop\\skill\\性能工程 Skill 评估专项考题\\tracingclaw_finance\\westock-data\\scripts\\index.js",
+      "quote",
+      "hk00700"
+    ],
+    "exit_code": 0,
+    "stdout_file": "westock_quote.stdout.txt",
+    "stderr_file": "westock_quote.stderr.txt"
+  },
+  {
+    "name": "westock_kline",
+    "argv": [
+      "node",
+      "C:\\Users\\17128\\Desktop\\skill\\性能工程 Skill 评估专项考题\\tracingclaw_finance\\westock-data\\scripts\\index.js",
+      "kline",
+      "hk00700",
+      "--period",
+      "day",
+      "--limit",
+      "5"
+    ],
+    "exit_code": 0,
+    "stdout_file": "westock_kline.stdout.txt",
+    "stderr_file": "westock_kline.stderr.txt"
+  }
+]

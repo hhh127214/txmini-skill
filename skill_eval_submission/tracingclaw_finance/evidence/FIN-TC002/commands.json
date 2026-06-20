@@ -1,0 +1,14 @@
+[
+  {
+    "name": "westock_finance",
+    "argv": [
+      "node",
+      "C:\\Users\\17128\\Desktop\\skill\\性能工程 Skill 评估专项考题\\tracingclaw_finance\\westock-data\\scripts\\index.js",
+      "finance",
+      "hk00700"
+    ],
+    "exit_code": 0,
+    "stdout_file": "westock_finance.stdout.txt",
+    "stderr_file": "westock_finance.stderr.txt"
+  }
+]

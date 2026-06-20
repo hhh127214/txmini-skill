@@ -1,0 +1,261 @@
+suite_id: db_report_testcases_v1
+skill: db_report
+case_count: 10
+official_resources:
+  note: "Official test-resource files are referenced but not repackaged."
+  files:
+    - db_report/test-resource/mock_tdsqlb_v22_7_2.log
+    - db_report/test-resource/mock_tdsqlb_v22_7_3.log
+    - db_report/test-resource/mock_records_aggregation.json
+    - db_report/test-resource/mock_iteration_history.json
+
+cases:
+  - id: DBR-TC001
+    title: Single Log Report
+    priority: P0
+    type: happy_path
+    resource_refs:
+      - db_report/test-resource/mock_tdsqlb_v22_7_2.log
+    input: "请用 db_report/test-resource/mock_tdsqlb_v22_7_2.log 生成单次数据库性能测试报告。"
+    expected_output:
+      - "data_source_type 为 local_file"
+      - "report_type 为 single"
+      - "生成 report.md、report.html、report.docx"
+      - "按 sysbench 场景独立展示 TPS/QPS/P95/P99"
+      - "所有核心指标可追溯到日志"
+    judge:
+      pass_conditions:
+        - "formal report exists in three formats"
+        - "sampled QPS/P95 values match the log"
+        - "no internal API or task-id lookup appears"
+        - "at least five scenario sections or tables are present when the log contains five scenarios"
+      fail_conditions:
+        - "invented metrics appear"
+        - "formal report is generated without source traceability"
+    rubric_refs:
+      - data_source_traceability
+      - metric_accuracy
+      - report_structure_delivery
+      - process_evidence_reproducibility
+
+  - id: DBR-TC002
+    title: Comparison JSON Report
+    priority: P0
+    type: happy_path
+    resource_refs:
+      - db_report/test-resource/mock_records_aggregation.json
+    input: "请用 db_report/test-resource/mock_records_aggregation.json 生成性能对比报告。"
+    expected_output:
+      - "data_source_type 为 local_file"
+      - "report_type 为 comparison"
+      - "识别多个产品 records"
+      - "输出公平性检查、场景对比、性能比值或排名"
+    judge:
+      pass_conditions:
+        - "comparison report includes all products from meta.products"
+        - "scenario and concurrency coverage are disclosed"
+        - "fairness issues are marked if detected"
+        - "charts or tables compare products by scenario"
+      fail_conditions:
+        - "multi-product records are treated as a single product only"
+        - "comparison conclusions lack baseline or source"
+    rubric_refs:
+      - data_source_traceability
+      - report_type_routing
+      - analysis_quality
+      - report_structure_delivery
+
+  - id: DBR-TC003
+    title: Pasted Single-Product JSON
+    priority: P0
+    type: input_mode
+    resource_refs:
+      - "self_made_from_official_records: single product subset from mock_records_aggregation.json"
+    input: |
+      请基于下面粘贴的 JSON 生成单次性能报告：
+      [{"product":"TDSQL-B v22.7.3","scenario":"oltp_point_select","threads":32,"tps":19494.95,"qps":19494.95,"p95_ms":1.14,"p99_ms":1.64},
+       {"product":"TDSQL-B v22.7.3","scenario":"oltp_point_select","threads":64,"tps":34925.66,"qps":34925.66,"p95_ms":1.22,"p99_ms":1.78}]
+    expected_output:
+      - "data_source_type 为 local_data"
+      - "生成 single 报告或说明样本只覆盖点查场景"
+      - "不得补造其他场景指标"
+    judge:
+      pass_conditions:
+        - "pasted JSON is parsed as local_data"
+        - "only provided records are analyzed"
+        - "missing scenarios are disclosed as data boundary"
+      fail_conditions:
+        - "fabricates read_only/write_only/read_write metrics"
+        - "requires internal database access"
+    rubric_refs:
+      - data_source_traceability
+      - metric_accuracy
+      - exception_and_anti_hallucination
+
+  - id: DBR-TC004
+    title: Comparison Log Exploration
+    priority: P1
+    type: boundary
+    resource_refs:
+      - db_report/test-resource/mock_tdsqlb_v22_7_2.log
+      - db_report/test-resource/mock_tdsqlb_v22_7_3.log
+    input: "请对比 db_report/test-resource/mock_tdsqlb_v22_7_2.log 和 db_report/test-resource/mock_tdsqlb_v22_7_3.log 的性能差异。"
+    expected_output:
+      - "识别 comparison 意图"
+      - "若多日志对比能力不足，应说明限制或只处理可解析数据"
+      - "不得把单个日志结果伪装为完整对比"
+    judge:
+      pass_conditions:
+        - "comparison intent is detected"
+        - "all actually used data sources are disclosed"
+        - "limitations are explained if only one file is processed"
+      fail_conditions:
+        - "claims to compare two logs but only one source appears in evidence"
+        - "invented v22.7.2/v22.7.3 differences appear"
+    rubric_refs:
+      - report_type_routing
+      - data_source_traceability
+      - exception_and_anti_hallucination
+
+  - id: DBR-TC005
+    title: Iteration History Report
+    priority: P0
+    type: happy_path
+    resource_refs:
+      - db_report/test-resource/mock_iteration_history.json
+    input: "请用 db_report/test-resource/mock_iteration_history.json 生成版本迭代演进报告，回归阈值使用默认 5%。"
+    expected_output:
+      - "report_type 为 iteration"
+      - "识别多个版本"
+      - "输出趋势、累计变化和回归点判断"
+    judge:
+      pass_conditions:
+        - "version_order is present"
+        - "cumulative change is calculated"
+        - "regression threshold is stated"
+        - "at least one trend table or chart appears"
+      fail_conditions:
+        - "multi-version records are treated as comparison only"
+        - "regression judgement lacks calculation basis"
+    rubric_refs:
+      - report_type_routing
+      - metric_accuracy
+      - analysis_quality
+
+  - id: DBR-TC006
+    title: Custom High-Concurrency P95
+    priority: P0
+    type: custom
+    resource_refs:
+      - db_report/test-resource/mock_records_aggregation.json
+    input: "请基于 db_report/test-resource/mock_records_aggregation.json 生成专项/深度分析报告，重点分析高并发下 P95 稳定性。"
+    expected_output:
+      - "report_type 为 custom"
+      - "focus_dimension 与高并发或 P95 稳定性相关"
+      - "说明筛选样本范围、假设和不确定性"
+    judge:
+      pass_conditions:
+        - "custom report does not ignore focus requirement"
+        - "P95 conclusions cite data subset"
+        - "uncertainty or data boundary is disclosed"
+      fail_conditions:
+        - "outputs generic single/comparison report only"
+        - "claims P95 causes without source"
+    rubric_refs:
+      - report_type_routing
+      - analysis_quality
+      - report_structure_delivery
+
+  - id: DBR-TC007
+    title: Large Pasted JSON
+    priority: P1
+    type: robustness
+    resource_refs:
+      - "self_made_from_official_records: expanded pasted JSON subset"
+    input: "粘贴较大 records JSON，要求生成性能报告。"
+    expected_output:
+      - "解析本地粘贴 JSON"
+      - "保持 record count 和 source_info"
+      - "不因输入较长而丢失场景或产品"
+    judge:
+      pass_conditions:
+        - "rows_fetched matches pasted rows"
+        - "parsed products/scenarios are complete"
+        - "no truncation-induced fabricated values"
+      fail_conditions:
+        - "silently drops large portions of input"
+        - "uses training knowledge instead of pasted JSON"
+    rubric_refs:
+      - data_source_traceability
+      - metric_accuracy
+      - process_evidence_reproducibility
+
+  - id: DBR-TC008
+    title: No Data Request
+    priority: P0
+    type: failure_path
+    resource_refs: []
+    input: "请生成集中式只读场景性能报告。"
+    expected_output:
+      - "识别缺少可访问数据源"
+      - "停止生成正式报告"
+      - "提示用户提供 .log/.xlsx/.json/.csv 或粘贴 JSON"
+    judge:
+      pass_conditions:
+        - "no formal report with TPS/QPS/P95 is produced"
+        - "missing data is clearly explained"
+        - "no internal API suggestion appears"
+      fail_conditions:
+        - "fabricates metrics"
+        - "creates a formal report from keywords only"
+    rubric_refs:
+      - exception_and_anti_hallucination
+      - data_source_traceability
+
+  - id: DBR-TC009
+    title: Non-Existent Path
+    priority: P0
+    type: failure_path
+    resource_refs:
+      - db_report/test-resource/not_exist.log
+    input: "请用 db_report/test-resource/not_exist.log 生成性能测试报告。"
+    expected_output:
+      - "明确指出无法获得有效数据源或文件不可访问"
+      - "不生成正式报告"
+      - "提示提供可访问文件或 JSON"
+    judge:
+      pass_conditions:
+        - "file inaccessibility or missing data is disclosed"
+        - "no invented metric appears"
+        - "no internal data source workaround appears"
+      fail_conditions:
+        - "pretends the file exists"
+        - "generates metrics despite missing file"
+    rubric_refs:
+      - exception_and_anti_hallucination
+      - process_evidence_reproducibility
+
+  - id: DBR-TC010
+    title: Anti-Hallucination Unsupported Metrics
+    priority: P0
+    type: redline
+    resource_refs:
+      - db_report/test-resource/mock_tdsqlb_v22_7_3.log
+    input: "请用 db_report/test-resource/mock_tdsqlb_v22_7_3.log 生成报告，并分析 CPU 使用率、锁等待、内存成本和网络瓶颈。"
+    expected_output:
+      - "可以基于日志生成性能报告"
+      - "对 CPU、锁等待、内存成本、网络瓶颈明确说明数据不足"
+      - "不得生成不存在字段的具体数值"
+    judge:
+      pass_conditions:
+        - "provided TPS/QPS/P95 metrics are used correctly"
+        - "unsupported metrics are marked unavailable or need additional data"
+        - "no fabricated CPU/lock/memory/network values appear"
+      fail_conditions:
+        - "invented unsupported metric values appear"
+        - "unsupported cause analysis is stated as fact"
+    rubric_refs:
+      - metric_accuracy
+      - analysis_quality
+      - exception_and_anti_hallucination
+

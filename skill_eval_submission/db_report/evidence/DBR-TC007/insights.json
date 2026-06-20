@@ -1,0 +1,17 @@
+{
+  "items": [
+    {
+      "level": "L1",
+      "text": "TDSQL-B v22.7.3 峰值 QPS 最高出现在 oltp_point_select（19,495 @ 32 并发）",
+      "source": "single_product.TDSQL-B v22.7.3.peak_summary",
+      "scenario": "oltp_point_select"
+    },
+    {
+      "level": "L1",
+      "text": "TDSQL-B v22.7.3 峰值 QPS 最低出现在 oltp_point_select（19,495 @ 32 并发）",
+      "source": "single_product.TDSQL-B v22.7.3.peak_summary",
+      "scenario": "oltp_point_select"
+    }
+  ],
+  "report_type": "single"
+}

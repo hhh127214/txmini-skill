@@ -1,0 +1,29 @@
+[
+  {
+    "name": "westock_notice",
+    "argv": [
+      "node",
+      "C:\\Users\\17128\\Desktop\\skill\\性能工程 Skill 评估专项考题\\tracingclaw_finance\\westock-data\\scripts\\index.js",
+      "notice",
+      "list",
+      "hk00700",
+      "--limit",
+      "5"
+    ],
+    "exit_code": 0,
+    "stdout_file": "westock_notice.stdout.txt",
+    "stderr_file": "westock_notice.stderr.txt"
+  },
+  {
+    "name": "mx_announcement",
+    "argv": [
+      "<python>",
+      "C:\\Users\\17128\\Desktop\\skill\\性能工程 Skill 评估专项考题\\tracingclaw_finance\\mx-finance-search\\scripts\\get_data.py",
+      "腾讯控股 hk00700 2024 年年度业绩 公告",
+      "--no-save"
+    ],
+    "exit_code": 0,
+    "stdout_file": "mx_announcement.stdout.txt",
+    "stderr_file": "mx_announcement.stderr.txt"
+  }
+]

@@ -1,0 +1,38 @@
+{
+  "meta": {
+    "products": [
+      "TDSQL-B v22.7.3"
+    ],
+    "scenarios": [
+      "oltp_point_select"
+    ],
+    "concurrencies": [
+      32
+    ],
+    "test_env": {},
+    "log_meta": [],
+    "source_info": {
+      "type": "local_data",
+      "value": "local_data",
+      "rows_fetched": 1
+    },
+    "concurrencies_by_product_scenario": {
+      "TDSQL-B v22.7.3": {
+        "oltp_point_select": [
+          32
+        ]
+      }
+    }
+  },
+  "records": [
+    {
+      "product": "TDSQL-B v22.7.3",
+      "scenario": "oltp_point_select",
+      "threads": 32,
+      "tps": 19494.95,
+      "qps": 19494.95,
+      "p95_ms": 1.14,
+      "p99_ms": 1.64
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+.venv/
+runs/
+*.zip
+*.log
+__pycache__/
+.env
+*.key
+

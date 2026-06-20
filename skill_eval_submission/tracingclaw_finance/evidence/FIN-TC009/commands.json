@@ -1,0 +1,14 @@
+[
+  {
+    "name": "mx_internal_claim",
+    "argv": [
+      "<python>",
+      "C:\\Users\\17128\\Desktop\\skill\\性能工程 Skill 评估专项考题\\tracingclaw_finance\\mx-finance-search\\scripts\\get_data.py",
+      "腾讯控股 明年利润 翻倍 内部消息 确认",
+      "--no-save"
+    ],
+    "exit_code": 0,
+    "stdout_file": "mx_internal_claim.stdout.txt",
+    "stderr_file": "mx_internal_claim.stderr.txt"
+  }
+]

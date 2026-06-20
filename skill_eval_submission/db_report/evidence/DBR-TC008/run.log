@@ -1,0 +1,57 @@
+intent.json 已生成: C:\Users\17128\Documents\tx-skill\runs\db_report\DBR-TC008\data\intent.json
+{
+  "data_source_type": "keyword_only",
+  "data_source_value": null,
+  "report_type": "single",
+  "dimension_filters": {
+    "test_name_keywords": [
+      "read_only",
+      "集中式性能"
+    ],
+    "test_name_keywords_or": null,
+    "tool_name": null,
+    "tool_version_keywords": [],
+    "component_name": null,
+    "component_version": null
+  },
+  "results_key_filters": {
+    "threads": null,
+    "tables": null,
+    "table_size": null,
+    "time": null,
+    "warehouses": null
+  },
+  "task_filters": {
+    "task_id": null,
+    "plan_id": null,
+    "report_id": null
+  },
+  "iteration_config": null,
+  "custom_config": null,
+  "other_info": null
+}
+Traceback (most recent call last):
+  File "C:\Users\17128\Desktop\skill\性能工程 Skill 评估专项考题\db_report\db_report_skill\scripts\data_source_adapter.py", line 361, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\17128\Desktop\skill\性能工程 Skill 评估专项考题\db_report\db_report_skill\scripts\data_source_adapter.py", line 347, in main
+    extracted = load_records(intent)
+  File "C:\Users\17128\Desktop\skill\性能工程 Skill 评估专项考题\db_report\db_report_skill\scripts\data_source_adapter.py", line 292, in load_records
+    raise RuntimeError(
+    ...<7 lines>...
+    )
+RuntimeError: 未检测到具体的数据文件。请提供以下格式之一：
+  - sysbench .log 日志文件路径
+  - .xlsx Excel 文件路径
+  - .json 数据文件路径
+  - .csv 数据文件路径
+  - 直接粘贴 JSON 数据
+
+> C:\Users\17128\Documents\tx-skill\.venv\Scripts\python.exe C:\Users\17128\Desktop\skill\性能工程 Skill 评估专项考题\db_report\db_report_skill\scripts\parse_intent.py --text 请生成集中式只读场景性能报告。 --out C:\Users\17128\Documents\tx-skill\runs\db_report\DBR-TC008\data\intent.json
+
+意图解析结果：
+  data_source_type: keyword_only
+  report_type:      single
+
+> C:\Users\17128\Documents\tx-skill\.venv\Scripts\python.exe C:\Users\17128\Desktop\skill\性能工程 Skill 评估专项考题\db_report\db_report_skill\scripts\data_source_adapter.py --intent C:\Users\17128\Documents\tx-skill\runs\db_report\DBR-TC008\data\intent.json --out C:\Users\17128\Documents\tx-skill\runs\db_report\DBR-TC008\data\extracted_data.json
+步骤失败: C:\Users\17128\Documents\tx-skill\.venv\Scripts\python.exe C:\Users\17128\Desktop\skill\性能工程 Skill 评估专项考题\db_report\db_report_skill\scripts\data_source_adapter.py --intent C:\Users\17128\Documents\tx-skill\runs\db_report\DBR-TC008\data\intent.json --out C:\Users\17128\Documents\tx-skill\runs\db_report\DBR-TC008\data\extracted_data.json

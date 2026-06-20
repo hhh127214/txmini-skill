@@ -1,0 +1,1 @@
+请用 db_report/test-resource/mock_tdsqlb_v22_7_2.log 生成单次数据库性能测试报告。

@@ -1,0 +1,95 @@
+rubric_id: db_report_rubric_v1
+skill: db_report
+total_score: 100
+passing_score: 80
+description: >
+  Rubric for evaluating db_report_skill outputs. Scores should be assigned from
+  observable outputs, intermediate artifacts, logs, and evidence captured during
+  execution. Historical removed scripts are not required.
+
+dimensions:
+  - id: data_source_traceability
+    name: 数据来源可信度
+    weight: 20
+    excellent: "All metrics and conclusions are traceable to local files or pasted JSON; source_info is complete."
+    partial: "Most metrics are traceable, but some source metadata or record counts are unclear."
+    fail: "Uses internal data, guesses data, or cannot explain metric sources."
+    checks:
+      - "input source is local_file or local_data for formal reports"
+      - "source path or pasted JSON is recorded"
+      - "rows_fetched or equivalent record count is present"
+      - "no internal API/database/task-id lookup is used"
+
+  - id: metric_accuracy
+    name: 指标准确性
+    weight: 20
+    excellent: "TPS/QPS/P95/P99/duration values match input data and derived values are mathematically correct."
+    partial: "Minor formatting or rounding issues exist, but core values are correct."
+    fail: "Core metrics are wrong, invented, or inconsistent across outputs."
+    checks:
+      - "sampled TPS/QPS/P95 values match input"
+      - "peak QPS and peak threads are correct"
+      - "iteration deltas are calculated correctly"
+      - "comparison ratios are calculated against stated baseline"
+
+  - id: report_type_routing
+    name: 报告类型识别
+    weight: 15
+    excellent: "Correctly routes to single/comparison/iteration/custom based on user intent and data shape."
+    partial: "Report type is correct but some intent filters are incomplete."
+    fail: "Wrong report type or missing required report_type evidence."
+    checks:
+      - "intent.json report_type is correct"
+      - "scenario keywords are normalized"
+      - "AND/OR scenario logic is not mixed"
+      - "custom and iteration configs are present when required"
+
+  - id: analysis_quality
+    name: 分析结论质量
+    weight: 15
+    excellent: "Analysis is scenario-separated, supported by data, and includes appropriate L1/L2/L3 insight placement."
+    partial: "Analysis is mostly data-supported but lacks depth or misses some scenario details."
+    fail: "Conclusions are generic, unsupported, or misleading."
+    checks:
+      - "scenarios are analyzed independently"
+      - "comparison reports disclose fairness"
+      - "iteration reports include trend, cumulative change, and regression judgement"
+      - "custom reports include focus dimension, assumptions, and uncertainty"
+
+  - id: report_structure_delivery
+    name: 报告结构与三格式交付
+    weight: 15
+    excellent: "Markdown, HTML, and DOCX are generated with required sections, charts, tables, and consistent numbers."
+    partial: "All formats exist but some formatting, chart, or section details are incomplete."
+    fail: "Missing formats, missing charts, or unresolved placeholders."
+    checks:
+      - "report.md exists"
+      - "report.html exists"
+      - "report.docx exists"
+      - "charts match report type baseline where applicable"
+      - "no unresolved placeholders remain"
+
+  - id: exception_and_anti_hallucination
+    name: 异常处理与反幻觉
+    weight: 10
+    excellent: "Missing, bad, or insufficient data is rejected clearly without invented metrics."
+    partial: "Error is handled but message is vague or lacks next-step guidance."
+    fail: "Formal report is generated from missing/invalid data or invented metrics."
+    checks:
+      - "missing data stops report generation"
+      - "non-existent paths are not silently ignored"
+      - "bad or empty files are rejected"
+      - "unsupported metrics are not fabricated"
+
+  - id: process_evidence_reproducibility
+    name: 过程证据与可复现性
+    weight: 5
+    excellent: "Inputs, commands, outputs, logs, and intermediate files are recorded so the case can be rerun."
+    partial: "Evidence exists but rerun instructions or environment details are incomplete."
+    fail: "No evidence that the case was actually executed."
+    checks:
+      - "case input is preserved"
+      - "execution command or agent prompt is preserved"
+      - "output artifacts are linked"
+      - "score reason references evidence"
+

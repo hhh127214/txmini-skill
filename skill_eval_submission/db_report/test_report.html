@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>db_report Skill Evaluation Report</title>
+  <style>
+    body { font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif; margin: 32px auto; max-width: 1100px; color: #1f2937; line-height: 1.6; }
+    h1 { color: #1f4e79; border-bottom: 3px solid #1f4e79; padding-bottom: 8px; }
+    h2 { color: #2e75b6; margin-top: 28px; }
+    table { border-collapse: collapse; width: 100%; margin: 12px 0 24px; }
+    th { background: #D9E2F3; color: #1f4e79; }
+    th, td { border: 1px solid #cbd5e1; padding: 8px 10px; text-align: left; }
+    tr:nth-child(even) td { background: #f8fafc; }
+    .note { background: #eef6ff; border-left: 4px solid #2e75b6; padding: 10px 14px; }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; background: #e5e7eb; }
+    .pass { color: #047857; font-weight: 700; }
+    .fail { color: #b91c1c; font-weight: 700; }
+    .metric { font-size: 24px; font-weight: 700; color: #1f4e79; }
+    ul { margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <h1>db_report Skill Evaluation Report</h1>
+  <p class="note">db_report 10 条评估用例已全部真实运行。运行证据位于 <code>evidence/</code>，生成报告位于 <code>outputs/</code>，图表截图证据位于 <code>screenshots/</code>。</p>
+
+  <h2>Execution Environment</h2>
+  <table>
+    <tr><th>Item</th><th>Value</th></tr>
+    <tr><td>Target Skill</td><td>db_report_skill</td></tr>
+    <tr><td>Skill Version</td><td>Current updated assignment version</td></tr>
+    <tr><td>Agent/Base Model</td><td>Local pipeline execution through <code>scripts/run_pipeline.py</code></td></tr>
+    <tr><td>Execution Date</td><td>2026-06-20</td></tr>
+    <tr><td>Test Resource Path</td><td><code>C:\Users\17128\Desktop\skill\性能工程 Skill 评估专项考题\db_report\test-resource</code></td></tr>
+    <tr><td>Runner</td><td><code>tools/run_db_report_suite.py</code></td></tr>
+  </table>
+
+  <h2>Summary</h2>
+  <table>
+    <tr><th>Total Cases</th><th>Executed</th><th>Passed</th><th>Failed</th><th>Average Score</th></tr>
+    <tr><td class="metric">10</td><td class="metric">10</td><td class="metric">6</td><td class="metric">4</td><td class="metric">76.1</td></tr>
+  </table>
+
+  <h2>Case Results</h2>
+  <table>
+    <tr><th>Case ID</th><th>Title</th><th>Priority</th><th>Exit</th><th>Score</th><th>Pass</th><th>Evidence</th></tr>
+    <tr><td>DBR-TC001</td><td>Single Log Report</td><td><span class="badge">P0</span></td><td>0</td><td>92</td><td class="pass">true</td><td><code>evidence/DBR-TC001</code>, <code>outputs/DBR-TC001</code></td></tr>
+    <tr><td>DBR-TC002</td><td>Comparison JSON Report</td><td><span class="badge">P0</span></td><td>0</td><td>86</td><td class="pass">true</td><td><code>evidence/DBR-TC002</code>, <code>outputs/DBR-TC002</code></td></tr>
+    <tr><td>DBR-TC003</td><td>Pasted Single-Product JSON</td><td><span class="badge">P0</span></td><td>0</td><td>82</td><td class="pass">true</td><td><code>evidence/DBR-TC003</code>, <code>outputs/DBR-TC003</code></td></tr>
+    <tr><td>DBR-TC004</td><td>Comparison Log Exploration</td><td><span class="badge">P1</span></td><td>0</td><td>48</td><td class="fail">false</td><td><code>evidence/DBR-TC004</code>, <code>outputs/DBR-TC004</code></td></tr>
+    <tr><td>DBR-TC005</td><td>Iteration History Report</td><td><span class="badge">P0</span></td><td>0</td><td>88</td><td class="pass">true</td><td><code>evidence/DBR-TC005</code>, <code>outputs/DBR-TC005</code></td></tr>
+    <tr><td>DBR-TC006</td><td>Custom High-Concurrency P95</td><td><span class="badge">P0</span></td><td>0</td><td>76</td><td class="fail">false</td><td><code>evidence/DBR-TC006</code>, <code>outputs/DBR-TC006</code></td></tr>
+    <tr><td>DBR-TC007</td><td>Large Pasted JSON</td><td><span class="badge">P1</span></td><td>0</td><td>45</td><td class="fail">false</td><td><code>evidence/DBR-TC007</code>, <code>outputs/DBR-TC007</code></td></tr>
+    <tr><td>DBR-TC008</td><td>No Data Request</td><td><span class="badge">P0</span></td><td>1</td><td>90</td><td class="pass">true</td><td><code>evidence/DBR-TC008</code></td></tr>
+    <tr><td>DBR-TC009</td><td>Non-Existent Path</td><td><span class="badge">P0</span></td><td>1</td><td>86</td><td class="pass">true</td><td><code>evidence/DBR-TC009</code></td></tr>
+    <tr><td>DBR-TC010</td><td>Anti-Hallucination Unsupported Metrics</td><td><span class="badge">P0</span></td><td>0</td><td>68</td><td class="fail">false</td><td><code>evidence/DBR-TC010</code>, <code>outputs/DBR-TC010</code></td></tr>
+  </table>
+
+  <h2>Evidence Summary</h2>
+  <table>
+    <tr><th>Case ID</th><th>Parsed Records</th><th>Products</th><th>Scenarios</th><th>Charts</th><th>Report Formats</th></tr>
+    <tr><td>DBR-TC001</td><td>30</td><td>1</td><td>5</td><td>11</td><td>md/html/docx</td></tr>
+    <tr><td>DBR-TC002</td><td>90</td><td>3</td><td>5</td><td>17</td><td>md/html/docx</td></tr>
+    <tr><td>DBR-TC003</td><td>1</td><td>1</td><td>1</td><td>3</td><td>md/html/docx</td></tr>
+    <tr><td>DBR-TC004</td><td>30</td><td>1</td><td>5</td><td>16</td><td>md/html/docx</td></tr>
+    <tr><td>DBR-TC005</td><td>120</td><td>4</td><td>5</td><td>12</td><td>md/html/docx</td></tr>
+    <tr><td>DBR-TC006</td><td>90</td><td>3</td><td>5</td><td>2</td><td>md/html/docx</td></tr>
+    <tr><td>DBR-TC007</td><td>1</td><td>1</td><td>1</td><td>3</td><td>md/html/docx</td></tr>
+    <tr><td>DBR-TC008</td><td>0</td><td>0</td><td>0</td><td>0</td><td>none</td></tr>
+    <tr><td>DBR-TC009</td><td>0</td><td>0</td><td>0</td><td>0</td><td>none</td></tr>
+    <tr><td>DBR-TC010</td><td>30</td><td>1</td><td>5</td><td>11</td><td>md/html/docx</td></tr>
+  </table>
+
+  <h2>Defect Analysis</h2>
+  <ul>
+    <li>DBR-TC004: comparison intent was detected, but only one log file was ingested, so the result is not a true multi-version comparison.</li>
+    <li>DBR-TC006: custom high-concurrency/P95 report ran successfully, but chart count and P95-specific analysis depth were below expectation.</li>
+    <li>DBR-TC007: large pasted JSON was silently reduced to one parsed record without explicit incomplete-data warning.</li>
+    <li>DBR-TC010: unsupported CPU/lock/memory/network metrics were not fabricated, but the report did not explicitly state that these dimensions were unavailable.</li>
+    <li>DBR-TC009: the failure path is acceptable, but the error message is generic rather than a precise file-not-found diagnosis.</li>
+  </ul>
+
+  <h2>Overall Judgement</h2>
+  <p>db_report 当前版本对 single、标准 comparison JSON、iteration 和基础异常路径具备可运行能力，能够稳定生成 md/html/docx 三格式报告。主要短板集中在复杂输入摄取、custom 深度分析和 unsupported metrics 的显式边界声明。本轮评估体系成功覆盖正常、异常、边界、反幻觉和可复现证据维度，适合作为后续回归评估基线。</p>
+</body>
+</html>

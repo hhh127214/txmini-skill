@@ -1,0 +1,14 @@
+[
+  {
+    "name": "westock_search",
+    "argv": [
+      "node",
+      "C:\\Users\\17128\\Desktop\\skill\\性能工程 Skill 评估专项考题\\tracingclaw_finance\\westock-data\\scripts\\index.js",
+      "search",
+      "不存在科技股份有限公司"
+    ],
+    "exit_code": 0,
+    "stdout_file": "westock_search.stdout.txt",
+    "stderr_file": "westock_search.stderr.txt"
+  }
+]
